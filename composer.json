@@ -1,0 +1,21 @@
+{
+    "name": "Registration Form",
+    "description": "Trial Challenge - Webdeveloper recruitment",
+    "keywords": ["challenge", "php"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Luiz Smelan",
+            "email": "luizcarlosj@gmail.com",
+            "role": "Creator / Main Developer"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+}
