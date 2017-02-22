@@ -4,15 +4,29 @@ namespace Controllers;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use View\Renderer;
 
 class Homepage
 {
-    public function showForm(Request $request)
+    private $request;
+    private $renderer;
+
+    public function __construct(Request $request, Renderer $renderer)
     {
-        if ($request->getMethod() == 'POST') {
+        $this->request = $request;
+        $this->renderer = $renderer;
+    }
+
+    public function showForm()
+    {
+        if ($this->request->getMethod() == 'POST') {
 
         }
 
-        return new Response("It is working");
+        $html = $this->renderer->render('homepage', [
+           'hello' => 'Hello World!'
+        ]);
+
+        return new Response($html);
     }
 }
