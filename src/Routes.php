@@ -8,7 +8,7 @@ $routes->add(
     'homepage_showForm',
     new Route(
         '/',
-        ['_controller' => 'Controllers\\Homepage::showForm']
+        ['_controller' => 'Controller\\Homepage::showForm']
     )
 );
 
