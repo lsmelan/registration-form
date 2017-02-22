@@ -3,6 +3,7 @@
 {% block body %}
     <h3>Registe-se gratuitamente</h3>
     <div class="title">Registe-se de forma fácil e rápida. O registo é rápido e grátis.</div>
+    <div class="message{% if errorCount > 0 %} error{% endif %}">{{ message }}</div>
     <div class="form">
         <form method="POST" name="regForm" id="regForm" action="">
             <p>
@@ -10,8 +11,8 @@
                 <input type="text" id="email" name="email" maxlength="50" class="default-size">
             </p>
             <p>
-                <label class="text required" for="emailconf">Confirmar Email</label>
-                <input type="text" id="emailconf" name="emailconf" maxlength="50" class="default-size">
+                <label class="text required" for="email_conf">Confirmar Email</label>
+                <input type="text" id="email_conf" name="email_conf" maxlength="50" class="default-size">
             </p>
             <br>
             <p>
@@ -19,14 +20,14 @@
                 <input type="password" id="password" name="password" maxlength="30" class="medium-size">
             </p>
             <p>
-                <label class="text required" for="passwordconf">Confirmar Password</label>
-                <input type="password" id="passwordconf" name="passwordconf" maxlength="30" class="medium-size">
+                <label class="text required" for="password_conf">Confirmar Password</label>
+                <input type="password" id="password_conf" name="password_conf" maxlength="30" class="medium-size">
             </p>
             <br>
             <p>
                 <label class="text required">Nome</label>
                 <input type="text" id="name" name="name" maxlength="50" placeholder="Nome" style="width:198px;">
-                <input type="text" id="lastname" name="lastname" maxlength="50" placeholder="Apelido" style="width:198px;">
+                <input type="text" id="last_name" name="last_name" maxlength="50" placeholder="Apelido" style="width:198px;">
             </p>
             <p>
                 <label class="text" for="street">Rua / Nº</label>

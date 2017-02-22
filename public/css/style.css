@@ -54,6 +54,18 @@ div.title {
     margin-bottom: 3px;
 }
 
+div.message {
+    position:absolute;
+    right: 0;
+    top: 38px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+div.error {
+    color: red;
+}
+
 .btn {
     background-color: #4288CE;
     color: #ffffff;

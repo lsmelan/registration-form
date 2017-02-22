@@ -23,13 +23,28 @@ class Homepage
 
     public function showForm()
     {
+        $message = "";
+        $errorCount = 0;
+
         if ($this->request->getMethod() == 'POST') {
+            $message = "Registo realizado com sucesso!";
+
             $data = $this->request->request->all();
             $entity = new RegistrationEntity($data);
-            $this->getRepository()->save($entity);
+            $errors = $this->getRepository()->save($entity);
+
+            if (!empty($errors)) {
+                $message = "Registo não realizado, tente novamente mais tarde";
+                $errorCount = count($errors);
+            }
         }
 
-        $html = $this->renderer->render('form');
+        $html = $this->renderer->render('form',
+            [
+                'message' => $message,
+                'errorCount' => $errorCount
+            ]
+        );
 
         return new Response($html);
     }

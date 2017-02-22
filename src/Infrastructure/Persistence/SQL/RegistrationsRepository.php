@@ -18,28 +18,29 @@ class RegistrationsRepository extends BaseRepository
     {
         $errors = $entity->validate();
 
-        if (empty($errors)) {
-            $params = [
-                $entity->getName(),
-                $entity->getLastname(),
-                $entity->getEmail(),
-                $entity->getPassword(),
-                $entity->getStreet(),
-                $entity->getPostcode(),
-                $entity->getCity(),
-                $entity->getCountry(),
-                $entity->getNif(),
-                $entity->getPhone(),
-            ];
+        $toArray = $entity->toArray();
 
+        if ($this->findByEmail($toArray['email'])) {
+            $errors['existent_email'] = 'You already registered';
+        }
+
+        if (empty($errors)) {
             $sql = "INSERT INTO registrations
-                    (name, last_name, email, password, street, postcode, city, country, nif, phone)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $this->db->prepare($sql);
-            $stmt->execute($params);
-        } else {
-            throw new \InvalidArgumentException;
+            $stmt->execute(array_values($toArray));
         }
+
+        return $errors;
+    }
+
+    public function findByEmail($email)
+    {
+        $sql = "SELECT * from registrations WHERE email = ?";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$email]);
+        return $stmt->fetchObject('Model\RegistrationEntity');
     }
 }
