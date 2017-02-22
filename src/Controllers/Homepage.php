@@ -23,9 +23,7 @@ class Homepage
 
         }
 
-        $html = $this->renderer->render('homepage', [
-           'hello' => 'Hello World!'
-        ]);
+        $html = $this->renderer->render('form');
 
         return new Response($html);
     }

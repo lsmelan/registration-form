@@ -3,11 +3,15 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Formulário de Registo{% endblock %}</title>
-        {% block stylesheets %} {% endblock %}
+        {% block stylesheets %}
+            <link rel="stylesheet" href="css/style.css" />
+        {% endblock %}
 
         {% block javascripts %} {% endblock %}
     </head>
     <body>
-    {% block body %}{% endblock %}
+        <div class="content">
+            {% block body %}{% endblock %}
+        </div>
     </body>
 </html>

@@ -16,7 +16,7 @@ class TwigRenderer implements Renderer
         ));
     }
 
-    public function render($name, array $data)
+    public function render($name, array $data = [])
     {
         return $this->twig->render("{$name}.html.twig", $data);
     }
