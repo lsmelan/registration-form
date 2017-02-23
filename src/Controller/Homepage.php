@@ -2,7 +2,6 @@
 
 namespace Controller;
 
-use Model\BaseRepository;
 use Model\RegistrationEntity;
 use Model\RepositoryFactory;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,7 +12,6 @@ class Homepage
 {
     private $request;
     private $renderer;
-    private $repository;
 
     public function __construct(Request $request, Renderer $renderer)
     {
@@ -31,7 +29,8 @@ class Homepage
 
             $data = $this->request->request->all();
             $entity = new RegistrationEntity($data);
-            $errors = $this->getRepository()->save($entity);
+            $repository = (new RepositoryFactory())->getInstance('Registrations');
+            $errors = $repository->save($entity);
 
             if (!empty($errors)) {
                 $message = "Registo não realizado, tente novamente mais tarde";
@@ -47,14 +46,5 @@ class Homepage
         );
 
         return new Response($html);
-    }
-
-    public function getRepository()
-    {
-        if (!$this->repository instanceof BaseRepository) {
-            $this->repository = (new RepositoryFactory())->getInstance('Registrations');
-        }
-
-        return $this->repository;
     }
 }

@@ -60,11 +60,11 @@ class RegistrationEntity implements GenericEntity
             $errors['blank_lastname'] = 'Last name is required';
         }
 
-        if (!preg_match("/^\d{9}$/", $this->nif)) {
+        if ($this->nif && !preg_match("/^\d{9}$/", $this->nif)) {
             $errors['wrong_nif'] = 'NIF must have nine numeric digits';
         }
 
-        if (!preg_match("/^\d{4}-\d{3}$/", $this->postcode)) {
+        if ($this->postcode && !preg_match("/^\d{4}-\d{3}$/", $this->postcode)) {
             $errors['wrong_postcode'] = 'Postcode must be typed correctly';
         }
 
@@ -72,7 +72,7 @@ class RegistrationEntity implements GenericEntity
         $pattern = '/^(?:9 [1-36] [0-9]| 2 [12] [0-9]| 2 [35] [1-689]| 2 4 [1-59]| 2 6 [1-35689]| 2 7 [1-9]| 2 8 [1-69]| 2 9 [1256])[0-9]{6}$/x';
         $phone = preg_replace('/[^\d]/x', "", $this->phone);
 
-        if ($this->country == 'PT' && !preg_match($pattern, $phone)) {
+        if ($this->phone && $this->country == 'PT' && !preg_match($pattern, $phone)) {
             $errors['wrong_phone'] = 'Phone number must be valid';
         }
 
