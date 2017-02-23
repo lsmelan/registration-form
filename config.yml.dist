@@ -1,0 +1,6 @@
+databases:
+  mysql:
+    host: localhost
+    dbname: challenge
+    user: root
+    password: root
