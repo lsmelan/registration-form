@@ -21,4 +21,4 @@ CREATE TABLE `registrations` (
   PRIMARY KEY (`id`));
   
   * Finally go to public directory and run php -S localhost:8000 (if you are using PHP 7)
-  * Browse to http://localhost:8080
+  * Browse to http://localhost:8000
