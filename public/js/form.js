@@ -17,7 +17,8 @@ $( document ).ready(function() {
         "rules": {
             "email": {
                 "required": true,
-                "email": true
+                "email": true,
+                "remote": "ajax/isRegisteredEmail"
             },
             "email_conf": {
                 "required": true,
@@ -46,7 +47,9 @@ $( document ).ready(function() {
         },
         messages: {
             'email': {
-                required: "O preenchimento deste campo é obrigatório."
+                required: "O preenchimento deste campo é obrigatório.",
+                email: "Utilize um email válido.",
+                remote: "Este email já está registado."
             },
             'email_conf': {
                 required: "O preenchimento deste campo é obrigatório.",

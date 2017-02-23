@@ -12,4 +12,12 @@ $routes->add(
     )
 );
 
+$routes->add(
+    'ajax_isRegisteredEmail',
+    new Route(
+        '/ajax/isRegisteredEmail',
+        ['_controller' => 'Controller\\Ajax::isRegisteredEmail']
+    )
+);
+
 return $routes;

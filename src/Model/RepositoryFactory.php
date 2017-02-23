@@ -4,6 +4,12 @@ namespace Model;
 
 class RepositoryFactory
 {
+    /**
+     * @param $name
+     * @param string $driver
+     * @param string $type
+     * @return BaseRepository
+     */
     public function getInstance($name, $driver = 'mysql', $type = 'SQL')
     {
         $className = 'Infrastructure\\Persistence\\' . $type . '\\' . ucfirst($name) . 'Repository';
