@@ -72,4 +72,55 @@ $( document ).ready(function() {
             }
         }
     });
+
+    $( "#password" ).keyup(function() {
+        var value = $(this).val();
+        var score = 0;
+
+        if ($("#progress-bar").hasClass('safe-pass')) {
+            $("#progress-bar").removeClass('safe-pass');
+        }
+
+        if ($("#progress-bar").hasClass('very-safe-pass')) {
+            $("#progress-bar").removeClass('very-safe-pass');
+        }
+
+        if (value.length > 0) {
+            $(".password-box").css('visibility', 'visible');
+
+            //only evaluate the password if its size is greater or equal than 8
+            if (value.length >= 8) {
+                //This condition verifies if there is at least one special character
+                if (/[^\w]/.test(value)) {
+                    score++;
+                }
+
+                //This condition verifies the existence of a number
+                if (/[\d]/.test(value)) {
+                    score++;
+                }
+
+                //One uppercase character increases one more point
+                if (/[A-Z]/.test(value)) {
+                    score++;
+                }
+
+                //Finally the last condition is checking for one lowercase letter
+                if (/[a-z]/.test(value)) {
+                    score++;
+                }
+
+                //If at the final the score is like 2 or 3, then it is a safe password
+                if (score > 1 && score < 4) {
+                    $("#progress-bar").addClass('safe-pass');
+                }
+                //However if it attends all requirements then the password is very safe
+                else if (score >= 4) {
+                    $("#progress-bar").addClass('very-safe-pass');
+                }
+            }
+        } else {
+            $(".password-box").css('visibility', 'hidden');
+        }
+    });
 });
